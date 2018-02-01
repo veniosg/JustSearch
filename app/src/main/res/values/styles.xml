@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Animation.Assist" parent="@android:style/Animation.InputMethod">
+        <item name="android:windowExitAnimation">@anim/exit_assist</item>
+    </style>
+</resources>

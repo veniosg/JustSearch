@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="co.pxhouse.csa.AssistActivity">
+
+    <EditText
+        android:id="@+id/queryView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_query_field"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_query_field"
+        android:drawablePadding="16dp"
+        android:drawableStart="@drawable/ic_search_provider_generic"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:gravity="center_vertical|start"
+        android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
+
+        <requestFocus />
+    </EditText>
+</merge>
