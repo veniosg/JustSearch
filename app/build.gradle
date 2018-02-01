@@ -13,7 +13,7 @@ android {
         versionName versionProps['name']
         versionCode versionProps['code'].toInteger()
 
-        applicationId "co.pxhouse.csa"
+        applicationId "co.pxhouse.sas"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
     }

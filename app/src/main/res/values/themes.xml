@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.CSA.Assist" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.SAS.Assist" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@style/Animation.Assist</item>
 
         <item name="android:windowIsTranslucent">true</item>
