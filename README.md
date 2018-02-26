@@ -1,7 +1,9 @@
-# Swiss Army Search 
+# Swiss Army Search
 
-This app is an Assist replacement (the app that launches after long pressing home). 
-It provides a simple way to search from everywhere without needing to launch the heavyweight (in data and resources' needs) Google search app.
+SAS is an Assist replacement (the app that launches after long pressing home). 
+It provides a simple way to search from everywhere without needing to launch the heavy (in terms of data and resources' needs) Google search app.
+
+[<img alt="Screenshot" height="320" src="https://github.com/veniosg/SwissArmySearch/blob/master/screenshot.png">](https://github.com/veniosg/SwissArmySearch/blob/master/screenshot.png) 
 
 ## Usage
 As an assist app, SAS cannot be launched via the launcher. Users need to navigate to the device settings and change the default Assist app.
