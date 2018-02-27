@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="co.pxhouse.sas.android.activity.AssistActivity">
 
-    <EditText
-        android:id="@+id/queryView"
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_query_field"
         android:layout_gravity="bottom"
@@ -12,17 +12,31 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/bg_query_field"
-        android:drawablePadding="16dp"
-        android:drawableStart="@drawable/ic_provider_generic"
-        android:elevation="8dp"
-        android:focusable="true"
-        android:gravity="center_vertical|start"
-        android:hint="@string/search"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp">
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp">
 
-        <requestFocus />
-    </EditText>
+        <ImageView
+            android:id="@+id/providerButton"
+            style="?android:actionButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_provider_generic" />
+
+        <EditText
+            android:id="@+id/queryView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:focusable="true"
+            android:gravity="center_vertical|start"
+            android:hint="@string/search"
+            android:imeOptions="actionSearch"
+            android:inputType="text">
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
 </merge>
