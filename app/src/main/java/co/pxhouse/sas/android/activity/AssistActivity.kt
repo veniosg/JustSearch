@@ -19,6 +19,8 @@ import android.widget.ListPopupWindow
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import co.pxhouse.sas.R
+import co.pxhouse.sas.android.Util
+import co.pxhouse.sas.android.Util.dp
 import co.pxhouse.sas.android.adapter.ProviderListAdapter
 import co.pxhouse.sas.arch.model.Providers
 import co.pxhouse.sas.arch.model.SearchProvider
@@ -60,7 +62,7 @@ class AssistActivity : Activity() {
 
     private fun initPopup() {
         providerListWindow.anchorView = providerButton
-        providerListWindow.setContentWidth(250)
+        providerListWindow.setContentWidth(dp(this, 184f).toInt())
         providerListWindow.setAdapter(ProviderListAdapter())
         providerListWindow.setOnItemClickListener { _, _, _, id -> onProviderSelected(id) }
     }
