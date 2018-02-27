@@ -1,4 +1,4 @@
-package co.pxhouse.sas
+package co.pxhouse.sas.android.activity
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator.ofFloat
@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
+import co.pxhouse.sas.R
 
 class AssistActivity : Activity() {
     private val queryUrl = "https://duckduckgo.com?q=%s"

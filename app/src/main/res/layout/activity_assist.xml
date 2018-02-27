@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="co.pxhouse.sas.AssistActivity">
+    tools:context="co.pxhouse.sas.android.activity.AssistActivity">
 
     <EditText
         android:id="@+id/queryView"
@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/bg_query_field"
         android:drawablePadding="16dp"
-        android:drawableStart="@drawable/ic_search_provider_generic"
+        android:drawableStart="@drawable/ic_provider_generic"
         android:elevation="8dp"
         android:focusable="true"
         android:gravity="center_vertical|start"
