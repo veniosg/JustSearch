@@ -9,7 +9,7 @@ It provides a simple way to search from everywhere without needing to launch the
 As an assist app, SAS cannot be launched via the launcher. Users need to navigate to the device settings and change the default Assist app.
 
 ## Contributing 
-Swiss Army Search only supports DuckDuckGo, with support for other providers planned, as well as showing installed apps so that you don't have to first go to home to search for them. 
+SAS uses DuckDuckGo by default, but allows opting for Google, Bing, Yandex or Yahoo instead. 
 To contribute check out [the available issues](https://github.com/veniosg/SwissArmySearch/issues)!
 
 ## License
