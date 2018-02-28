@@ -34,6 +34,12 @@ object Providers {
             "Yandex",
             "https://www.yandex.com/search/?text=%s",
             3
+        ),
+        SearchProvider(
+            R.drawable.ic_provider_yahoo,
+            "Yahoo",
+            "https://search.yahoo.com/yhs/search?p=%s",
+            4
         )
     )
 }

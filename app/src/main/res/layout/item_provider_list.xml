@@ -4,10 +4,11 @@
     android:id="@+id/name"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:drawablePadding="12dp"
+    android:drawablePadding="16dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingEnd="16dp"
     android:paddingStart="12dp"
-    android:textAppearance="@android:style/TextAppearance.Material.Body2"
-    tools:drawableStart="@drawable/ic_provider_generic" />
+    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+    tools:text="lala"
+    tools:drawableStart="@drawable/ic_provider_duckduckgo" />
