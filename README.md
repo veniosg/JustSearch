@@ -2,14 +2,11 @@
 
 Just Search is an Assist replacement (the app that launches after long pressing home). 
 It provides a simple way to search from everywhere without needing to launch the heavy (in terms of data and resources' needs) Google search app.
+Just Search uses DuckDuckGo by default, but allows opting for Google, Bing, Yandex or Yahoo instead. 
 
 [<img alt="Screenshot" height="450" src="https://github.com/veniosg/JustSearch/blob/master/screenshot.png">](https://github.com/veniosg/JustSearch/blob/master/screenshot.png) 
 
-## Usage
-As an assist app, Just Search cannot be launched via the launcher. Users need to navigate to the device settings and change the default Assist app.
-
 ## Contributing 
-Just Search uses DuckDuckGo by default, but allows opting for Google, Bing, Yandex or Yahoo instead. 
 To contribute check out [the available issues](https://github.com/veniosg/JustSearch/issues)!
 
 ## License
