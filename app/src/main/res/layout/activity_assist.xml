@@ -19,23 +19,23 @@
         android:paddingStart="8dp">
 
         <ImageView
-            android:importantForAccessibility="no"
             android:id="@+id/providerButton"
             style="?android:actionButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_provider_generic" />
 
         <EditText
-            android:layout_marginStart="4dp"
             android:id="@+id/queryView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
             android:background="@null"
             android:focusable="true"
             android:gravity="center_vertical|start"
             android:hint="@string/search"
-            android:imeOptions="actionSearch"
+            android:imeOptions="actionSearch|flagNoExtractUi"
             android:inputType="text">
 
             <requestFocus />
