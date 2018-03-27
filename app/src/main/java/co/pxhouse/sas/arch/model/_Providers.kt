@@ -67,6 +67,12 @@ fun generateProviders(context: Context, persistedValues: PersistedValues) = list
         "Yahoo",
         "https://search.yahoo.com/yhs/search?p=%s",
         4
+    ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_qwant,
+        "Qwant",
+        "https://www.qwant.com/?q=%s",
+        5
     )//,
 //    CustomSearchProvider(
 //        R.drawable.ic_provider_generic,
