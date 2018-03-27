@@ -19,18 +19,20 @@ import android.widget.ListPopupWindow
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import co.pxhouse.sas.R
-import co.pxhouse.sas.android.Util
+import co.pxhouse.sas.android.SharedPreferencesPersistedValues
 import co.pxhouse.sas.android.Util.dp
 import co.pxhouse.sas.android.adapter.ProviderListAdapter
-import co.pxhouse.sas.arch.model.Providers
-import co.pxhouse.sas.arch.model.SearchProvider
+import co.pxhouse.sas.arch.model.generateProviders
 
 class AssistActivity : Activity() {
     private val queryView by lazy { findViewById<EditText>(R.id.queryView) }
     private val providerButton by lazy { findViewById<ImageView>(R.id.providerButton) }
     private val container by lazy { findViewById<View>(R.id.container) }
     private val providerListWindow by lazy { ListPopupWindow(this) }
-    private val preferences by lazy { getPreferences(MODE_PRIVATE) }
+    private val persistedValues by lazy {
+        SharedPreferencesPersistedValues(this, getPreferences(MODE_PRIVATE))
+    }
+    private val providers by lazy { generateProviders(this, persistedValues) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +44,6 @@ class AssistActivity : Activity() {
         runEnterAnimation()
     }
 
-    private fun readPersistedProviderId() =
-        preferences.getLong(getString(R.string.prefkey_selected_provider), 0L)
-
     private fun initViews() {
         (container.parent as ViewGroup).setOnClickListener { finish() }
         queryView.setOnEditorActionListener { v, _, _ ->
@@ -53,7 +52,7 @@ class AssistActivity : Activity() {
             return@setOnEditorActionListener true
         }
         providerButton.setOnClickListener { providerListWindow.show() }
-        providerButton.setImageResource(findSelectedProvider().iconRes)
+        providerButton.setImageResource(findSelectedProvider().iconRes())
 
         val mlp = container.layoutParams as ViewGroup.MarginLayoutParams
         mlp.topMargin = resources.displayMetrics.heightPixels
@@ -63,7 +62,7 @@ class AssistActivity : Activity() {
     private fun initPopup() {
         providerListWindow.anchorView = providerButton
         providerListWindow.setContentWidth(dp(this, 184f).toInt())
-        providerListWindow.setAdapter(ProviderListAdapter())
+        providerListWindow.setAdapter(ProviderListAdapter(providers))
         providerListWindow.setOnItemClickListener { _, _, _, id -> onProviderSelected(id) }
     }
 
@@ -71,23 +70,19 @@ class AssistActivity : Activity() {
         persistSelectedProvider(id)
         val selectedProvider = findSelectedProvider(id)
 
-        providerButton.setImageResource(selectedProvider.iconRes)
+        providerButton.setImageResource(selectedProvider.iconRes())
         providerListWindow.dismiss()
     }
 
     private fun persistSelectedProvider(providerId: Long) {
-        val prefKey = getString(R.string.prefkey_selected_provider)
-        preferences.edit()
-            .putLong(prefKey, providerId)
-            .apply()
+        persistedValues.setPersistedProviderId(providerId)
     }
 
-    private fun findSelectedProvider(providerId: Long = readPersistedProviderId()): SearchProvider {
-        return Providers.list.firstOrNull { it.id == providerId } ?: Providers.list[0]
-    }
+    private fun findSelectedProvider(providerId: Long = persistedValues.getPersistedProviderId()) =
+        providers.firstOrNull { it.id() == providerId } ?: providers[0]
 
     private fun searchFor(query: CharSequence) {
-        showUri(this, String.format(findSelectedProvider().url, query))
+        showUri(this, String.format(findSelectedProvider().url(), query))
     }
 
     private fun showUri(c: Context, uri: String) {

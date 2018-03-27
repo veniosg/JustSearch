@@ -1,45 +1,77 @@
 package co.pxhouse.sas.arch.model
 
+import android.content.Context
 import co.pxhouse.sas.R
+import co.pxhouse.sas.arch.model.persistence.PersistedValues
 
-data class SearchProvider(
-    val iconRes: Int,
-    val name: String,
-    val url: String,
-    val id: Long
-)
-
-object Providers {
-    val list = listOf(
-        SearchProvider(
-            R.drawable.ic_provider_duckduckgo,
-            "DuckDuckGo",
-            "https://duckduckgo.com?q=%s",
-            0
-        ),
-        SearchProvider(
-            R.drawable.ic_provider_google,
-            "Google",
-            "https://www.google.com/search?q=%s",
-            1
-        ),
-        SearchProvider(
-            R.drawable.ic_provider_bing,
-            "Bing",
-            "https://www.bing.com/search?q=%s",
-            2
-        ),
-        SearchProvider(
-            R.drawable.ic_provider_yandex,
-            "Yandex",
-            "https://www.yandex.com/search/?text=%s",
-            3
-        ),
-        SearchProvider(
-            R.drawable.ic_provider_yahoo,
-            "Yahoo",
-            "https://search.yahoo.com/yhs/search?p=%s",
-            4
-        )
-    )
+interface SearchProvider {
+    fun iconRes(): Int
+    fun name(): String
+    fun url(): String
+    fun id(): Long
 }
+
+class StaticSearchProvider(
+    private val iconRes: Int,
+    private val name: String,
+    private val url: String,
+    private val id: Long
+) : SearchProvider {
+    override fun iconRes() = iconRes
+    override fun name() = name
+    override fun url() = url
+    override fun id() = id
+}
+
+class CustomSearchProvider(
+    private val iconRes: Int,
+    private val name: String,
+    private val persistedValues: PersistedValues,
+    private val id: Long
+) : SearchProvider {
+    override fun iconRes() = iconRes
+    override fun name(): String = name
+    override fun id() = id
+    override fun url(): String {
+        return persistedValues.getCustomProviderUrl()
+    }
+}
+
+fun generateProviders(context: Context, persistedValues: PersistedValues) = listOf(
+    StaticSearchProvider(
+        R.drawable.ic_provider_duckduckgo,
+        "DuckDuckGo",
+        "https://duckduckgo.com?q=%s",
+        0
+    ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_google,
+        "Google",
+        "https://www.google.com/search?q=%s",
+        1
+    ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_bing,
+        "Bing",
+        "https://www.bing.com/search?q=%s",
+        2
+    ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_yandex,
+        "Yandex",
+        "https://www.yandex.com/search/?text=%s",
+        3
+    ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_yahoo,
+        "Yahoo",
+        "https://search.yahoo.com/yhs/search?p=%s",
+        4
+    )//,
+//    CustomSearchProvider(
+//        R.drawable.ic_provider_generic,
+//        context.getString(R.string.custom_provider),
+//        persistedValues,
+//        6
+//    )
+)
