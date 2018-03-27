@@ -40,6 +40,12 @@ object Providers {
             "Yahoo",
             "https://search.yahoo.com/yhs/search?p=%s",
             4
+        ),
+        SearchProvider(
+            R.drawable.ic_provider_qwant,
+            "Qwant",
+            "https://www.qwant.com/?q=%s",
+            5
         )
     )
 }
