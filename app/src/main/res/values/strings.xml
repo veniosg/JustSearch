@@ -1,4 +1,5 @@
 <resources>
     <string name="search">Search</string>
     <string name="application_not_available">No browser installed</string>
+    <string name="custom_provider">Custom</string>
 </resources>

@@ -10,15 +10,12 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import co.pxhouse.sas.R
-import co.pxhouse.sas.arch.model.Providers
 import co.pxhouse.sas.arch.model.SearchProvider
 
-class ProviderListAdapter() : BaseAdapter() {
-    private val providers = Providers.list
-
+class ProviderListAdapter(private val providers: List<SearchProvider>) : BaseAdapter() {
     override fun getItem(position: Int) = providers[position]
 
-    override fun getItemId(position: Int) = getItem(position).id
+    override fun getItemId(position: Int) = getItem(position).id()
 
     override fun getCount(): Int = providers.count()
 
@@ -28,8 +25,8 @@ class ProviderListAdapter() : BaseAdapter() {
 
         val nameView = from(parent.context)
             .inflate(R.layout.item_provider_list, parent, false) as TextView
-        nameView.setCompoundDrawablesRelativeWithIntrinsicBounds(item.iconRes, 0, 0, 0)
-        nameView.text = item.name
+        nameView.setCompoundDrawablesRelativeWithIntrinsicBounds(item.iconRes(), 0, 0, 0)
+        nameView.text = item.name()
 
         return nameView
     }
