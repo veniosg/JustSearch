@@ -1,10 +1,11 @@
 # Just Search
 
+[<img alt="Get it on F-Droid" height="80" src="https://f-droid.org/badge/get-it-on.png">](https://f-droid.org/packages/co.pxhouse.sas/)
 [<img alt="Get it on Google Play" height="80" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png">](https://play.google.com/store/apps/details?id=co.pxhouse.sas)
 
 Just Search is an Assist replacement (the app that launches after long pressing home). 
 It provides a simple way to search from everywhere without needing to launch the heavy (in terms of data and resources' needs) Google search app.
-Just Search uses DuckDuckGo by default, but allows opting for Google, Bing, Yandex or Yahoo instead. 
+Just Search uses DuckDuckGo by default, but allows opting for Qwant, Google, Bing, Yandex or Yahoo instead. 
 
 [<img alt="Screenshot" height="450" src="https://github.com/veniosg/JustSearch/blob/master/screenshot.png">](https://github.com/veniosg/JustSearch/blob/master/screenshot.png) 
 
