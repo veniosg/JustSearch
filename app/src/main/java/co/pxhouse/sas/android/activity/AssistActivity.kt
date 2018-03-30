@@ -12,7 +12,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -117,16 +116,9 @@ class AssistActivity : Activity() {
         customProviderId: Long,
         customProviderUrl: String
     ) {
-        val urlWithoutPlaceholder = customProviderUrl.replace("%s", "")
-        val hasPlaceholder = customProviderUrl != urlWithoutPlaceholder
-        val isUrl = Patterns.WEB_URL.matcher(urlWithoutPlaceholder).matches()
-        if (hasPlaceholder && isUrl) {
-            setSelectedProvider(customProviderId)
-            persistedValues.setCustomProviderUrl(customProviderUrl)
-            dialog.dismiss()
-        } else {
-            makeText(this, R.string.wrong_formatting_url, LENGTH_SHORT).show()
-        }
+        setSelectedProvider(customProviderId)
+        persistedValues.setCustomProviderUrl(customProviderUrl)
+        dialog.dismiss()
     }
 
     private fun setSelectedProvider(providerId: Long) {
