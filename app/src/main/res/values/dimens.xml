@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="height_query_field">48dp</dimen>
+    <dimen name="max_width_query_field">560dp</dimen>
 </resources>
