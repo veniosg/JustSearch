@@ -32,6 +32,7 @@ import co.pxhouse.sas.android.Util.dp
 import co.pxhouse.sas.android.adapter.ProviderListAdapter
 import co.pxhouse.sas.arch.model.CustomSearchProvider
 import co.pxhouse.sas.arch.model.generateProviders
+import kotlin.math.min
 
 class AssistActivity : Activity() {
     private val queryView by lazy { findViewById<EditText>(R.id.queryView) }
@@ -64,8 +65,10 @@ class AssistActivity : Activity() {
         providerButton.setImageResource(findSelectedProvider().iconRes())
 
         val mlp = container.layoutParams as ViewGroup.MarginLayoutParams
+        val maxWidth = resources.getDimensionPixelSize(R.dimen.max_width_query_field)
+        val targetWidth = resources.displayMetrics.widthPixels - mlp.marginStart - mlp.marginEnd
         mlp.topMargin = resources.displayMetrics.heightPixels
-        mlp.width = resources.displayMetrics.widthPixels - mlp.marginStart - mlp.marginEnd
+        mlp.width = min(maxWidth, targetWidth)
     }
 
     private fun initPopup() {
