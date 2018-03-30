@@ -73,11 +73,11 @@ fun generateProviders(context: Context, persistedValues: PersistedValues) = list
         "Qwant",
         "https://www.qwant.com/?q=%s",
         5
-    )//,
-//    CustomSearchProvider(
-//        R.drawable.ic_provider_generic,
-//        context.getString(R.string.custom_provider),
-//        persistedValues,
-//        6
-//    )
+    ),
+    CustomSearchProvider(
+        R.drawable.ic_provider_generic,
+        context.getString(R.string.custom_provider),
+        persistedValues,
+        6
+    )
 )

@@ -3,18 +3,26 @@ package co.pxhouse.sas.android.activity
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator.ofFloat
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.AlertDialog.BUTTON_POSITIVE
+import android.app.AlertDialog.Builder
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.PathInterpolator
+import android.view.inputmethod.EditorInfo.IME_ACTION_GO
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListPopupWindow
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
@@ -22,6 +30,7 @@ import co.pxhouse.sas.R
 import co.pxhouse.sas.android.SharedPreferencesPersistedValues
 import co.pxhouse.sas.android.Util.dp
 import co.pxhouse.sas.android.adapter.ProviderListAdapter
+import co.pxhouse.sas.arch.model.CustomSearchProvider
 import co.pxhouse.sas.arch.model.generateProviders
 
 class AssistActivity : Activity() {
@@ -67,18 +76,64 @@ class AssistActivity : Activity() {
     }
 
     private fun onProviderSelected(id: Long) {
-        persistSelectedProvider(id)
-        val selectedProvider = findSelectedProvider(id)
-
-        providerButton.setImageResource(selectedProvider.iconRes())
+        if (findProvider(id) is CustomSearchProvider) {
+            showCustomUrlDialog(id)
+        } else {
+            setSelectedProvider(id)
+        }
         providerListWindow.dismiss()
     }
 
-    private fun persistSelectedProvider(providerId: Long) {
-        persistedValues.setPersistedProviderId(providerId)
+    private fun showCustomUrlDialog(customProviderId: Long) {
+        val inflater = LayoutInflater.from(this)
+        val inputContainer = inflater.inflate(R.layout.dialog_custom_provider, null) as LinearLayout
+        val editText = inputContainer.findViewById<EditText>(R.id.text).apply {
+            setText(persistedValues.getCustomProviderUrl())
+        }
+
+        val dialog: AlertDialog = Builder(this)
+            .setTitle(R.string.dialog_title_custom_url)
+            .setView(inputContainer)
+            .setPositiveButton(R.string.select, null)
+            .setNegativeButton(R.string.cancel, null)
+            .create()
+        editText.setOnEditorActionListener({ text, actionId, _ ->
+            if (actionId == IME_ACTION_GO) {
+                onCustomProviderUrlSet(dialog, customProviderId, text.toString())
+            }
+            true
+        })
+        dialog.show()
+        dialog.getButton(BUTTON_POSITIVE).setOnClickListener {
+            onCustomProviderUrlSet(dialog, customProviderId, editText.text.toString())
+        }
     }
 
-    private fun findSelectedProvider(providerId: Long = persistedValues.getPersistedProviderId()) =
+    private fun onCustomProviderUrlSet(
+        dialog: Dialog,
+        customProviderId: Long,
+        customProviderUrl: String
+    ) {
+        val urlWithoutPlaceholder = customProviderUrl.replace("%s", "")
+        val hasPlaceholder = customProviderUrl != urlWithoutPlaceholder
+        val isUrl = Patterns.WEB_URL.matcher(urlWithoutPlaceholder).matches()
+        if (hasPlaceholder && isUrl) {
+            setSelectedProvider(customProviderId)
+            persistedValues.setCustomProviderUrl(customProviderUrl)
+            dialog.dismiss()
+        } else {
+            makeText(this, R.string.wrong_formatting_url, LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setSelectedProvider(providerId: Long) {
+        persistedValues.setPersistedProviderId(providerId)
+        providerButton.setImageResource(findProvider(providerId).iconRes())
+    }
+
+    private fun findSelectedProvider() = findProvider(persistedValues.getPersistedProviderId())
+
+    private fun findProvider(providerId: Long) =
         providers.firstOrNull { it.id() == providerId } ?: providers[0]
 
     private fun searchFor(query: CharSequence) {

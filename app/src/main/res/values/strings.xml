@@ -2,4 +2,9 @@
     <string name="search">Search</string>
     <string name="application_not_available">No browser installed</string>
     <string name="custom_provider">Custom</string>
+    <string name="dialog_title_custom_url">Custom search url</string>
+    <string name="cancel">Cancel</string>
+    <string name="select">Select</string>
+    <string name="wrong_formatting_url">Incorrectly formatted search url</string>
+    <string name="dialog_hint_custom_url">https://duckduckgo.com?q=%s</string>
 </resources>
