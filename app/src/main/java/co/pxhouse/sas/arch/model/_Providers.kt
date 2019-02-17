@@ -78,12 +78,12 @@ fun generateProviders(context: Context, persistedValues: PersistedValues) = list
         R.drawable.ic_provider_startpage,
         "Startpage",
         "https://www.startpage.com/do/search?query=%s",
-        6
+        7
     ),
     CustomSearchProvider(
         R.drawable.ic_provider_generic,
         context.getString(R.string.custom_provider),
         persistedValues,
-        7
+        6
     )
 )
