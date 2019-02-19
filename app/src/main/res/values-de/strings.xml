@@ -1,0 +1,8 @@
+<resources>
+    <string name="search">Suchen</string>
+    <string name="application_not_available">Kein Browser Installiert</string>
+    <string name="custom_provider">Benutzerdefiniert</string>
+    <string name="dialog_title_custom_url">benutzterdefinierter Suchlink</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="select">Auswählen</string>
+</resources>
