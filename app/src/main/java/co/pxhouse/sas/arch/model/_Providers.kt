@@ -74,6 +74,12 @@ fun generateProviders(context: Context, persistedValues: PersistedValues) = list
         "https://www.qwant.com/?q=%s",
         5
     ),
+    StaticSearchProvider(
+        R.drawable.ic_provider_startpage,
+        "Startpage",
+        "https://www.startpage.com/do/search?query=%s",
+        7
+    ),
     CustomSearchProvider(
         R.drawable.ic_provider_generic,
         context.getString(R.string.custom_provider),
