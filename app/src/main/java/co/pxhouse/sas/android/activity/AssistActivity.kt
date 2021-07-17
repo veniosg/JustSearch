@@ -132,7 +132,8 @@ class AssistActivity : Activity() {
         providers.firstOrNull { it.id() == providerId } ?: providers[0]
 
     private fun searchFor(query: CharSequence) {
-        showUri(this, String.format(findSelectedProvider().url(), query))
+        val queryEncoded = Uri.encode(query.toString())
+        showUri(this, String.format(findSelectedProvider().url(), queryEncoded))
     }
 
     private fun showUri(c: Context, uri: String) {
